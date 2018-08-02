@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// TODO other placeholders support
 // parseQuery returns query with dollars replaced by arguments
 func parseQuery(query string, args ...interface{}) string {
 	for i, v := range args {

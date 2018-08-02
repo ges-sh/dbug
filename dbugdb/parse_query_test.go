@@ -2,6 +2,7 @@ package dbugdb
 
 import "testing"
 
+// TODO more test cases
 func TestParseQuery(t *testing.T) {
 	testCases := []struct {
 		query string
