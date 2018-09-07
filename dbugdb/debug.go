@@ -22,7 +22,7 @@ func New(db DB, logger Logger) DB {
 // The args are for any placeholder parameters in the query.
 func (db debug) ExecContext(ctx context.Context, query string,
 	args ...interface{}) (sql.Result, error) {
-	db.Debug(parseQuery(query, args))
+	db.Debug(parseQuery(query, args...))
 	return db.db.ExecContext(ctx, query, args...)
 }
 
@@ -30,7 +30,7 @@ func (db debug) ExecContext(ctx context.Context, query string,
 // The args are for any placeholder parameters in the query.
 func (db debug) QueryContext(ctx context.Context, query string,
 	args ...interface{}) (*sql.Rows, error) {
-	db.Debug(parseQuery(query, args))
+	db.Debug(parseQuery(query, args...))
 	return db.db.QueryContext(ctx, query, args...)
 }
 
@@ -41,6 +41,6 @@ func (db debug) QueryContext(ctx context.Context, query string,
 // Otherwise, the *Row's Scan scans the first selected row and discards the rest.
 func (db debug) QueryRowContext(ctx context.Context, query string,
 	args ...interface{}) *sql.Row {
-	db.Debug(parseQuery(query, args))
+	db.Debug(parseQuery(query, args...))
 	return db.db.QueryRowContext(ctx, query, args...)
 }
