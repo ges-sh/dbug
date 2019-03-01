@@ -16,7 +16,7 @@ func TestParseQuery(t *testing.T) {
 		},
 	}
 	for _, tt := range testCases {
-		if query := parseQuery(tt.query, tt.args...); query != tt.want {
+		if query := ParseQuery(tt.query, tt.args...); query != tt.want {
 			t.Errorf("exp %v\ngot %v", tt.want, query)
 		}
 	}

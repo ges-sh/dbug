@@ -21,14 +21,14 @@ func New(db DB, logger Logger) DB {
 // ExecContext executes a query without returning any rows.
 // The args are for any placeholder parameters in the query.
 func (db debug) ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
-	db.Debug(parseQuery(query, args...))
+	db.Debug(ParseQuery(query, args...))
 	return db.db.ExecContext(ctx, query, args...)
 }
 
 // QueryContext executes a query that returns rows, typically a SELECT.
 // The args are for any placeholder parameters in the query.
 func (db debug) QueryContext(ctx context.Context, query string, args ...interface{}) (*sql.Rows, error) {
-	db.Debug(parseQuery(query, args...))
+	db.Debug(ParseQuery(query, args...))
 	return db.db.QueryContext(ctx, query, args...)
 }
 
@@ -38,6 +38,6 @@ func (db debug) QueryContext(ctx context.Context, query string, args ...interfac
 // If the query selects no rows, the *Row's Scan will return ErrNoRows.
 // Otherwise, the *Row's Scan scans the first selected row and discards the rest.
 func (db debug) QueryRowContext(ctx context.Context, query string, args ...interface{}) *sql.Row {
-	db.Debug(parseQuery(query, args...))
+	db.Debug(ParseQuery(query, args...))
 	return db.db.QueryRowContext(ctx, query, args...)
 }
